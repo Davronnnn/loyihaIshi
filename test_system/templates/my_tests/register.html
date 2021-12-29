@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Registration{% endblock %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+
+        <!-- CSS uchin lik -->
+        <link rel="stylesheet" href="{% static 'css\containerw.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+
+    </head>
+    <body>
+
+
+<div class="wrapper">
+    <div class="sidebar">
+        <img width='180px' src="{% static 'img/logooq.png' %}">
+        <ul>
+            <li><a href="{% url 'my_tests:admin' user_id %}" ><i class="fa fa-home"></i>Boshqaruv paneli</a></li>
+            <li><a href="{% url 'my_tests:search' user_id %}"><i class="fa fa-user"></i>O'quvchilar</a></li>
+            <li class='active'><a href="{% url 'my_tests:register' user_id %}"><i class="fa fa-user-plus"></i>O'quvchi qo`shish</a></li>
+            <li><a href="{% url 'my_tests:choice' user_id %}"><i class="fa fa-sticky-note"></i>Testlar</a></li>
+        </ul>
+
+    </div>
+    <div class="main_content">
+        <div class="header">Admin Panelga Xush Kelibsiz
+        <a href="{% url 'my_tests:user_logout' user_id %}" style='color:#2432b3;'><i class="fa fa-sign-out"></i> Logout</a>
+        <a href="# "style='color:#2432b3;'><i class="fa fa-phone"></i> Aloqa</a>
+        </div>
+        <div class="info">
+          <div class="form">
+                <form action="{% url 'my_tests:register' user_id %}" method="POST" autocomplate='off'>
+                    <div class="inputs">
+                        <div class="form_head">
+                            <h2>O`quvchi qo`shish</h2>
+                        </div>
+                        <div class="form_body">
+                            {% csrf_token %}
+
+                            <label class="label1" for="user_name">Ism va Familyani kiriting</label>
+                            {{form.first_name}}
+                            {{form.last_name}}
+                            </div>
+                        <div class="form_body2">
+
+                            <label class="label1" for="grade">Sinfni kiriting</label>
+                            {{form.grade}}
+                            {{form.grade2}}
+
+                        <label class="label1" for="viloyat">Viloyatni kiriting</label>
+                        {{form.viloyat}}
+                        </div>
+                        <div class="form_footer">
+                            <label class="label1" for="school">Maktab raqamini va Usernameni kiriting</label>
+                            {{form.school}}
+                            {{form.username}}
+                            <label class="label1" for="password">Parolni kiriting</label>
+                            {{form.password1}}
+                            {{form.password2}}
+                        </div>
+                        <div>
+                            <button type="submit" class="btn mt-3 btn-primary" >Saqlash</button>
+                            <button class="btn mt-3 ml-2 btn-outline-secondary" style="font-size: 14px;" type="reset">Bekor qilish</button>
+                    </div>
+                    </div>
+                </form>
+                {% for message in messages %}
+                    {{ message }}
+                {% endfor %}
+            </div>
+      </div>
+    </div>
+</div>
+
+
+    </body>
+
+
+
+{% endblock %}

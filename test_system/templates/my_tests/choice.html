@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}JVXTV test sistemasi{% endblock %}
+
+{% block content %}
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- CSS uchin lik -->
+        <link rel="stylesheet" href="{% static 'css\choice.css' %}">
+        <link rel="stylesheet" href="{% static 'css\media.css' %}">
+
+    </head>
+    <body>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.css' %}" />
+	<link rel="stylesheet" href="{% static 'css/sidebar.css' %}">
+<div class="wrapper">
+    <div class="sidebar">
+        <img width='180px' src="{% static 'img/logooq.png' %}">
+        <ul>
+            <li><a href="{% url 'my_tests:admin' user_id %}" ><i class="fa fa-home"></i>Boshqaruv paneli</a></li>
+            <li><a href="{% url 'my_tests:search' user_id %}"><i class="fa fa-user"></i>O'quvchilar</a></li>
+            <li><a href="{% url 'my_tests:register' user_id %}"><i class="fa fa-user-plus"></i>O'quvchi qo'shish</a></li>
+            <li class='active'><a href="{% url 'my_tests:choice' user_id %}"><i class="fa fa-sticky-note"></i>Testlar</a></li>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="header">Admin Panelga Xush Kelibsiz
+        <a href="{% url 'my_tests:user_logout' user_id %}" style='color:#2432b3;'><i class="fa fa-sign-out"></i> Logout</a>
+        <a href="# "style='color:#2432b3;'><i class="fa fa-phone"></i> Aloqa</a>
+        </div>
+        <div class="info">
+
+
+<div >
+<header>9-SINF</header>
+<hr>
+<br>
+{% if verificate9 %}
+    <ul>
+    {% for i in verificate9 %}
+    <li class="li"><p class="p9" style="padding:10px 0;">{{ i.fanlar }}</p>
+        <a href="{% url 'my_tests:add_test' user_id i.id %}"><i class="fa fa-plus-circle" style="font-size: 16px;"> Qo`shish</i></a>
+        <a href="{% url 'my_tests:edit_test' user_id i.id %}"><i class="fa fa-pencil" style="font-size: 16px;">  Tahrirlash</i></a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<br>
+<hr>
+<br>
+<header>10-SINF</header>
+<hr>
+<br>
+{% if verificate10 %}
+    <ul>
+    {% for i in verificate10 %}
+    <li class='li'><p class="p10" style="padding:10px 0;">{{ i.fanlar }}</p><a href="{% url 'my_tests:add_test' user_id i.id %}"><i class="fa fa-plus-circle" style="font-size: 16px;"> Qo`shish</i></a> <a href="{% url 'my_tests:edit_test' user_id i.id %}"><i class="fa fa-pencil" style="font-size: 16px;"> Tahrirlash</i></a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+<br>
+<hr>
+<br>
+<header>11-SINF</header>
+<hr>
+<br>
+{% if verificate11 %}
+    <ul>
+    {% for i in verificate11 %}
+    <li class="li"><p class="p11" style="padding:10px 0;">{{ i.fanlar }}</p><a href="{% url 'my_tests:add_test' user_id i.id %}"><i class="fa fa-plus-circle" style="font-size: 16px; padding:0;"> Qo`shish</i></a> <a href="{% url 'my_tests:edit_test' user_id i.id %}"><i class="fa fa-pencil" style="font-size: 16px;"> Tahrirlash</i></a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+</div>
+</div>
+    </div>
+</div>
+{% endblock %}
